@@ -41,6 +41,7 @@ namespace RefTimeApp
 
         private static void ExecutesForWork(object state)
         {
+            DateTime StartTime = DateTime.Now;
             Stopwatch stopwatch = new();
 
             //count down from 25 minutes for every one minutes
@@ -67,8 +68,8 @@ namespace RefTimeApp
                     Console.WriteLine("Now Counting down Rest Time...");
                     System.Threading.Thread.Sleep(1000);
                     TimeSpan ts = stopwatch.Elapsed;
-                    Console.WriteLine("Your Session Time is {0:00}:{1:00}:{2:00}",
-                       ts.Hours, ts.Minutes, ts.Seconds);
+               /*     DateTime StopTime = DateTime.Now;
+                    Console.WriteLine($"Start Time: {StartTime}, \n Stop Time: {StopTime}");*/
 
                     Stopwatch stopwatch2 = new();
                     for (int b = 5; b >= 0; b--)
@@ -85,12 +86,10 @@ namespace RefTimeApp
 
                         }
                         TimeSpan rts = stopwatch.Elapsed;
-                        Console.WriteLine("Your Session Time is {0:00}:{1:00}:{2:00}",
-                        rts.Hours,  rts.Minutes,  rts.Seconds);
+                        DateTime StopTime = DateTime.Now;
+                        Console.WriteLine($"Start Time: {StartTime}, \n Stop Time: {StopTime}");
                     }
-                    //TimeSpan rts = stopwatch.Elapsed;
-                   // Console.WriteLine("Your Session Time is {0:00}:{1:00}:{2:00}",
-                        //ts.Hours + rts.Hours, ts.Minutes + rts.Minutes, ts.Seconds + rts.Seconds);
+                   
                 }
             
             }
