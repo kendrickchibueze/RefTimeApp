@@ -8,93 +8,103 @@ using System.Threading.Tasks;
 
 namespace RefTimeApp
 {
-     class Pomo
+    public class PomoTimer
     {
-       //data field members
-        bool worksession = true;
-     
-        //methods
-        public void TimerForWorkAndRestDurations()
+        public bool TimerCount = true;
+        public void WorkRestDuration(int workTime, int restTime)
         {
-            while (worksession)
+            DateTime startTime = DateTime.Now;
+            while (TimerCount)
             {
-                Stopwatch stopwatch = new();
-
-                using (new Timer(ExecutesForWork, null, TimeSpan.FromMinutes(1), TimeSpan.FromMinutes(1)))
+                Stopwatch workStopwatch = new();
+                if (workTime > 0)
                 {
-                    while (true)
-                    {
-                        if (Console.ReadLine() == "quit")
-                        {
-                            stopwatch.Stop();
-                            break;
-                        }
-                    }
-                  
+                    int workTimeMin = workTime * 1000 * 60;
+                    workStopwatch.Start();
+                    PrintColorMessage(ConsoleColor.Yellow, "Work Time is active...");
+                    Thread.Sleep(workTimeMin);
+                    workStopwatch.Stop();
+                }
+                else
+                {
+                    PrintColorMessage(ConsoleColor.Red, "please change your worktime");
+                }
+                TimeSpan workDurationstop = workStopwatch.Elapsed;
+                PrintColorMessage(ConsoleColor.Yellow, "Your workTime has completed...");
+                Console.WriteLine("\n");
+                Stopwatch RestStopwatch = new();
+                if (restTime > 0)
+                {
+                    int restTimeMin = restTime * 1000 * 60;
+                    RestStopwatch.Start();
+                    PrintColorMessage(ConsoleColor.Cyan, "Rest Timer Active...");
+                    Thread.Sleep(restTimeMin);
+                    RestStopwatch.Stop();
+                }
+                else
+                {
+                    PrintColorMessage(ConsoleColor.Red, "Please change your rest time");
+
+                }
+                TimeSpan restDurationstop = RestStopwatch.Elapsed;
+                PrintColorMessage(ConsoleColor.Cyan,"Your restTime has completed...");
+                Console.WriteLine("\n");
+                PrintColorMessage(ConsoleColor.Yellow, "Do you want to continue this cycle? (y/n)");
+                string CheckTimer = Console.ReadLine();
+                if (CheckTimer == "y")
+                {
+                    TimerCount = true;
+
                 }
 
-            }
-               
-        }
-
-        //Every 1 minute, it tells you that Alex s still working and Every 10 minute, it gives you the time remaining!
-
-        private static void ExecutesForWork(object state)
-        {
-            DateTime StartTime = DateTime.Now;
-            Stopwatch stopwatch = new();
-
-            //count down from 25 minutes for every one minutes
-            for (int a = 24; a >= 0; a--)
-            {
-                //Console.CursorLeft = 22;
-                
-                
-                Console.WriteLine("Alex is still working...");
-
-                //after every 10 minutes show the amount of time remaining
-                Thread.Sleep(600000);
-
-                Console.Write("{0} Minutes Left ", a-10);
-                
-
-                //System.Threading.Thread.Sleep(1000);
-
-                if (a == 0)
+                else if (CheckTimer == "n")
                 {
-                    Console.Beep();
-                    //TimeSpan ts = stopwatch.Elapsed;
-                    Console.WriteLine("Your WorkTime has completed");
-                    Console.WriteLine("Now Counting down Rest Time...");
-                    System.Threading.Thread.Sleep(1000);
-                    TimeSpan ts = stopwatch.Elapsed;
-               /*     DateTime StopTime = DateTime.Now;
-                    Console.WriteLine($"Start Time: {StartTime}, \n Stop Time: {StopTime}");*/
+                    TimerCount = false;
 
-                    Stopwatch stopwatch2 = new();
-                    for (int b = 5; b >= 0; b--)
-                    {
-                        stopwatch2.Start();
-                        Console.CursorLeft = 22;
-                        Console.WriteLine("Alex is resting");
-                        Console.Write("{0} ", b);    // Add space to make sure to override previous contents
-                        System.Threading.Thread.Sleep(60000);
-                        if (b==0)
-                        {
-                            stopwatch2.Stop();
-                            
-
-                        }
-                        TimeSpan rts = stopwatch.Elapsed;
-                        DateTime StopTime = DateTime.Now;
-                        Console.WriteLine($"Start Time: {StartTime}, \n Stop Time: {StopTime}");
-                    }
-                   
                 }
-            
+
+                else
+                {
+                    TimerCount = true;
+                }
+
+
             }
 
+            DateTime EndTime = DateTime.Now;
+            PrintColorMessage(ConsoleColor.Yellow, "Your Session has Ended:");
+            PrintColorMessage(ConsoleColor.Yellow, $"Start Time:{startTime}, \n EndTime:{EndTime.ToShortTimeString()}");
         }
-      
-    }   
+        //Get and display app Info
+        public void GetAppInfo()
+        {
+            // Set app vars
+            string appName = "Pomodoro Timer App";
+            string appVersion = "1.0.0";
+            string appAuthor = "kendrck";
+
+            //Change text color
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+
+
+            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+
+            //reset text color
+            Console.ResetColor();
+        }
+
+
+        // print color message
+        public void PrintColorMessage(ConsoleColor color, string message)
+        {
+            //tell user it is the wrong number
+            Console.ForegroundColor = color;
+
+            //tell user its not a number
+            Console.WriteLine(message);
+
+            //reset text color
+            Console.ResetColor();
+        }
+    }
 }
