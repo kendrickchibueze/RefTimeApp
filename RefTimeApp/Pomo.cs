@@ -10,7 +10,7 @@ namespace RefTimeApp
 {
     public class PomoTimer
     {
-        public bool _TimerCount = true;
+        private bool _TimerCount = true;
 
 
         public void WorkRestDuration(int workTime, int restTime)
@@ -106,26 +106,6 @@ namespace RefTimeApp
 
             PrintColorMessage(ConsoleColor.Yellow, $"Start Time:{startTime}, \n EndTime:{EndTime.ToShortTimeString()}");
         }
-        //Get and display app Info
-        public void GetAppInfo()
-        {
-            // Set app vars
-            string appName = "Pomodoro Timer App";
-
-            string appVersion = "1.0.0";
-
-            string appAuthor = "kendrck";
-
-            //Change text color
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-
-
-            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
-
-            //reset text color
-            Console.ResetColor();
-        }
-
 
         // print color message
         public void PrintColorMessage(ConsoleColor color, string message)
