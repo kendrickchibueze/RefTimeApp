@@ -10,11 +10,11 @@ namespace RefTimeApp
 {
     public class PomoTimer
     {
-        public bool TimerCount = true;
+        public bool _TimerCount = true;
         public void WorkRestDuration(int workTime, int restTime)
         {
             DateTime startTime = DateTime.Now;
-            while (TimerCount)
+            while (_TimerCount)
             {
                 Stopwatch workStopwatch = new();
                 if (workTime > 0)
@@ -60,19 +60,19 @@ namespace RefTimeApp
                 string CheckRound = Console.ReadLine().ToLower();
                 if (CheckRound == "y")
                 {
-                    TimerCount = true;
+                    _TimerCount = true;
 
                 }
 
                 else if (CheckRound == "n")
                 {
-                    TimerCount = false;
+                    _TimerCount = false;
 
                 }
 
                 else
                 {
-                    TimerCount = true;
+                    _TimerCount = true;
                 }
 
 
