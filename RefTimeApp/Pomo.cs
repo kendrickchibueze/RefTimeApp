@@ -10,7 +10,7 @@ namespace RefTimeApp
 {
     public class PomoTimer
     {
-        private bool _TimerCount = true;
+        private bool _TimerCount;
 
 
         public void WorkRestDuration(int workTime, int restTime)
@@ -18,7 +18,7 @@ namespace RefTimeApp
             DateTime startTime = DateTime.Now;
 
 
-            while (_TimerCount)
+            while (!_TimerCount)
             {
                 Stopwatch workStopwatch = new();
                 if (workTime > 0)
