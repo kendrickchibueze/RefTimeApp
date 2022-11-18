@@ -19,6 +19,7 @@ namespace RefTimeApp
                 Stopwatch workStopwatch = new();
                 if (workTime > 0)
                 {
+                    //convert to milliseconds
                     int workTimeMin = workTime * 1000 * 60;
                     workStopwatch.Start();
                     PrintColorMessage(ConsoleColor.Yellow, "Work Time is active...");
@@ -29,14 +30,20 @@ namespace RefTimeApp
                 {
                     PrintColorMessage(ConsoleColor.Red, "please change your worktime");
                 }
+
+
+                //A TimeSpan object represents a time interval (duration of time or elapsed time)
+                //that is measured as a positive or negative number of days, hours, minutes,
                 TimeSpan workDurationstop = workStopwatch.Elapsed;
                 PrintColorMessage(ConsoleColor.Yellow, "Your workTime has completed...");
                 Console.WriteLine("\n");
                 Stopwatch RestStopwatch = new();
                 if (restTime > 0)
                 {
+                    //convert to milliseconds
                     int restTimeMin = restTime * 1000 * 60;
                     RestStopwatch.Start();
+                    Console.Beep();
                     PrintColorMessage(ConsoleColor.Cyan, "Rest Timer Active...");
                     Thread.Sleep(restTimeMin);
                     RestStopwatch.Stop();
