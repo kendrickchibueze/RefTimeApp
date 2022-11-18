@@ -57,14 +57,14 @@ namespace RefTimeApp
                 PrintColorMessage(ConsoleColor.Cyan,"Your restTime has completed...");
                 Console.WriteLine("\n");
                 PrintColorMessage(ConsoleColor.Yellow, "Do you want to continue this cycle? (y/n)");
-                string CheckTimer = Console.ReadLine();
-                if (CheckTimer == "y")
+                string CheckRound = Console.ReadLine().ToLower();
+                if (CheckRound == "y")
                 {
                     TimerCount = true;
 
                 }
 
-                else if (CheckTimer == "n")
+                else if (CheckRound == "n")
                 {
                     TimerCount = false;
 
