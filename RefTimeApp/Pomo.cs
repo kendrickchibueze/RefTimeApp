@@ -107,6 +107,40 @@ namespace RefTimeApp
             PrintColorMessage(ConsoleColor.Yellow, $"Start Time:{startTime}, \n EndTime:{EndTime.ToShortTimeString()}");
         }
 
+
+        public class Application
+        {
+             public static void Run()
+            {
+                PomoTimer timer = new PomoTimer();
+                timer.PrintColorMessage(ConsoleColor.Cyan, "**********Welcome To Pomodoro Timer************");
+
+                timer.PrintColorMessage(ConsoleColor.Blue, "Please enter a work time duration in minutes:");
+
+                try
+                {
+                    int workTime = Convert.ToInt32(Console.ReadLine());
+
+                    timer.PrintColorMessage(ConsoleColor.Blue, "Please enter a Rest time duration in minutes:");
+
+                    int restTime = Convert.ToInt32(Console.ReadLine());
+
+                    timer.WorkRestDuration(workTime, restTime);
+
+                    Console.ReadLine();
+
+                }
+                catch (Exception e)
+                {
+                    timer.PrintColorMessage(ConsoleColor.Red, "invalid input, enter an integer in minutes");
+
+                }
+
+            }
+        }
+
+
+
         // print color message
         public void PrintColorMessage(ConsoleColor color, string message)
         {
