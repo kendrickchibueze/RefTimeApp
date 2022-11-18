@@ -11,9 +11,13 @@ namespace RefTimeApp
     public class PomoTimer
     {
         public bool _TimerCount = true;
+
+
         public void WorkRestDuration(int workTime, int restTime)
         {
             DateTime startTime = DateTime.Now;
+
+
             while (_TimerCount)
             {
                 Stopwatch workStopwatch = new();
@@ -21,9 +25,13 @@ namespace RefTimeApp
                 {
                     //convert to milliseconds
                     int workTimeMin = workTime * 1000 * 60;
+
                     workStopwatch.Start();
+
                     PrintColorMessage(ConsoleColor.Yellow, "Work Time is active...");
+
                     Thread.Sleep(workTimeMin);
+
                     workStopwatch.Stop();
                 }
                 else
@@ -35,17 +43,26 @@ namespace RefTimeApp
                 //A TimeSpan object represents a time interval (duration of time or elapsed time)
                 //that is measured as a positive or negative number of days, hours, minutes,
                 TimeSpan workDurationstop = workStopwatch.Elapsed;
+
                 PrintColorMessage(ConsoleColor.Yellow, "Your workTime has completed...");
+
                 Console.WriteLine("\n");
+
                 Stopwatch RestStopwatch = new();
+
                 if (restTime > 0)
                 {
                     //convert to milliseconds
                     int restTimeMin = restTime * 1000 * 60;
+
                     RestStopwatch.Start();
+
                     Console.Beep();
+
                     PrintColorMessage(ConsoleColor.Cyan, "Rest Timer Active...");
+
                     Thread.Sleep(restTimeMin);
+
                     RestStopwatch.Stop();
                 }
                 else
@@ -54,10 +71,15 @@ namespace RefTimeApp
 
                 }
                 TimeSpan restDurationstop = RestStopwatch.Elapsed;
+
                 PrintColorMessage(ConsoleColor.Cyan,"Your restTime has completed...");
+
                 Console.WriteLine("\n");
+
                 PrintColorMessage(ConsoleColor.Yellow, "Do you want to continue this cycle? (y/n)");
+
                 string CheckRound = Console.ReadLine().ToLower();
+
                 if (CheckRound == "y")
                 {
                     _TimerCount = true;
@@ -79,7 +101,9 @@ namespace RefTimeApp
             }
 
             DateTime EndTime = DateTime.Now;
+
             PrintColorMessage(ConsoleColor.Yellow, "Your Session has Ended:");
+
             PrintColorMessage(ConsoleColor.Yellow, $"Start Time:{startTime}, \n EndTime:{EndTime.ToShortTimeString()}");
         }
         //Get and display app Info
@@ -87,7 +111,9 @@ namespace RefTimeApp
         {
             // Set app vars
             string appName = "Pomodoro Timer App";
+
             string appVersion = "1.0.0";
+
             string appAuthor = "kendrck";
 
             //Change text color
@@ -104,7 +130,7 @@ namespace RefTimeApp
         // print color message
         public void PrintColorMessage(ConsoleColor color, string message)
         {
-            //tell user it is the wrong number
+            
             Console.ForegroundColor = color;
 
             //tell user its not a number
