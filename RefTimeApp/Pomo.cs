@@ -133,6 +133,7 @@ namespace RefTimeApp
                 catch (Exception e)
                 {
                     timer.PrintColorMessage(ConsoleColor.Red, "invalid input, enter an integer in minutes");
+                    Run();
 
                 }
 
