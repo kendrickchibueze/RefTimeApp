@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,16 +24,26 @@ namespace RefTimeApp
                 Stopwatch workStopwatch = new();
                 if (workTime > 0)
                 {
-                    //convert to milliseconds
-                    int workTimeMin = workTime * 1000 * 60;
+                    //convert to seconds
+                    int workTimeMin = workTime  * 60;
 
                     workStopwatch.Start();
+                    Console.Beep();
 
-                    PrintColorMessage(ConsoleColor.Yellow, "Work Time is active...");
+                    for (int i = workTimeMin; i >= 0; i--)
+                    {
+                        
+                        PrintColorMessage(ConsoleColor.Yellow, $"Work Time is active...{i} second(s)");
 
-                    Thread.Sleep(workTimeMin);
+                        Thread.Sleep(1000);
 
-                    workStopwatch.Stop();
+                        Console.Clear();
+
+                        workStopwatch.Stop();
+
+
+                    }
+
                 }
                 else
                 {
@@ -50,20 +61,28 @@ namespace RefTimeApp
 
                 Stopwatch RestStopwatch = new();
 
+                Console.Beep();
+
                 if (restTime > 0)
                 {
                     //convert to milliseconds
-                    int restTimeMin = restTime * 1000 * 60;
+                    int restTimeMin = restTime  * 60;
 
                     RestStopwatch.Start();
 
-                    Console.Beep();
+                    for (int i = restTimeMin; i >= 0; i--)
+                    {
 
-                    PrintColorMessage(ConsoleColor.Cyan, "Rest Timer Active...");
+                        PrintColorMessage(ConsoleColor.Cyan, $"Rest Time is active...{i} second(s)");
 
-                    Thread.Sleep(restTimeMin);
+                        Thread.Sleep(1000);
 
-                    RestStopwatch.Stop();
+                        Console.Clear();
+
+                        RestStopwatch.Stop();
+
+                    }
+                    
                 }
                 else
                 {
@@ -80,21 +99,25 @@ namespace RefTimeApp
 
                 string CheckRound = Console.ReadLine().ToLower();
 
-                if (CheckRound == "y")
+                switch (CheckRound)
                 {
-                    _TimerCount = true;
+                    case "y":
 
-                }
+                        _TimerCount = false;
 
-                else if (CheckRound == "n")
-                {
-                    _TimerCount = false;
+                        break;
 
-                }
+                    case "n":
 
-                else
-                {
-                    _TimerCount = true;
+                        _TimerCount = true;
+
+                        break;
+
+                    default:
+
+                        _TimerCount = false;
+
+                        break;
                 }
 
 
